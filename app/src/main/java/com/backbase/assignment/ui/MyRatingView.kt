@@ -1,0 +1,57 @@
+package com.backbase.assignment.ui
+
+import android.content.Context
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.RotateDrawable
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.widget.FrameLayout
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import com.backbase.assignment.R
+
+class MyRatingView: FrameLayout {
+
+    companion object {
+        const val HIGHER_REVIEW_SCORE_THRESHOLD = 50 //point at which the review is a "higher score"
+    }
+
+    constructor(context: Context, attrs: AttributeSet): super(context, attrs) { init(attrs) }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int): super(context, attrs, defStyleAttr) { init(attrs) }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int)
+            : super(context, attrs, defStyleAttr, defStyleRes) { init(attrs) }
+
+    var rating = 0
+
+    private lateinit var progressBar: ProgressBar
+    private lateinit var tvRatingView: TextView
+
+    private fun init(attrs: AttributeSet) {
+
+        val view = LayoutInflater.from(context).inflate(R.layout.rating_view_layout, this, false)
+        addView(view)
+        progressBar = view.findViewById(R.id.progress_bar)
+        tvRatingView = view.findViewById(R.id.tv_rating)
+
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyRatingView, 0, 0)
+        rating = typedArray.getInt(R.styleable.MyRatingView_rating, 0)
+
+        val ratingRingDrawable = ContextCompat.getDrawable(context, R.drawable.rating_ring)
+        val circularShapeDrawable =
+            ((ratingRingDrawable as LayerDrawable).findDrawableByLayerId(R.id.circular_progress) as RotateDrawable).drawable as GradientDrawable
+        if(rating >= HIGHER_REVIEW_SCORE_THRESHOLD) {
+            circularShapeDrawable.setColor(ContextCompat.getColor(context, R.color.lightGreen))
+        } else {
+            circularShapeDrawable.setColor(ContextCompat.getColor(context, R.color.mustardYellow))
+        }
+        progressBar.apply {
+            progressDrawable = ratingRingDrawable
+            progress = rating
+        }
+        tvRatingView.text = rating.toString()
+
+        typedArray.recycle()
+    }
+}

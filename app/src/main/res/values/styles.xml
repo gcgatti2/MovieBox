@@ -9,4 +9,8 @@
         <item name="android:textColorPrimary">#fff</item>
     </style>
 
+    <style name="progress" parent="Widget.MaterialComponents.ProgressIndicator.Circular.Indeterminate">
+
+    </style>
+
 </resources>

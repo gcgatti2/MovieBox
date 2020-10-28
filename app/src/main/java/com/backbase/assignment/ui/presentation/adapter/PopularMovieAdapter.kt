@@ -8,8 +8,12 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.R
+import com.backbase.assignment.ui.MyRatingView
 import com.backbase.assignment.ui.data.remote.entity.Movie
-import com.backbase.assignment.ui.presentation.util.*
+import com.backbase.assignment.ui.presentation.util.MINIMUM_FILE_SIZE
+import com.backbase.assignment.ui.presentation.util.generateImageUrl
+import com.backbase.assignment.ui.presentation.util.getHourAndMinuteFromMinute
+import com.backbase.assignment.ui.presentation.util.getLongformDate
 import com.bumptech.glide.Glide
 
 class PopularMovieAdapter(private val movieClickListener: PopularMovieListener?)
@@ -25,6 +29,7 @@ class PopularMovieAdapter(private val movieClickListener: PopularMovieListener?)
         val tvTitle = itemView.findViewById<TextView>(R.id.tv_title)
         val tvReleaseDate = itemView.findViewById<TextView>(R.id.tv_release_date)
         val tvDuration = itemView.findViewById<TextView>(R.id.tv_movie_duration)
+        val ratingView = itemView.findViewById<MyRatingView>(R.id.rating_view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent)
@@ -41,6 +46,7 @@ class PopularMovieAdapter(private val movieClickListener: PopularMovieListener?)
             holder.tvTitle.text = movie.title
             holder.tvReleaseDate.text = getLongformDate(movie.releaseDate)
             holder.tvDuration.text = getHourAndMinuteFromMinute(movie.duration)
+//            holder.ratingView.rating = (movie.averageRating * 10).toInt()
             holder.itemView.setOnClickListener {
                 movieClickListener?.onPopularMovieClicked(movie)
             }
