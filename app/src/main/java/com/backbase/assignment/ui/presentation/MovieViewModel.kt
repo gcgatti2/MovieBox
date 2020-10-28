@@ -9,12 +9,13 @@ import com.backbase.assignment.ui.data.remote.MovieApi
 class MovieViewModel: ViewModel() {
 
     private val movieRepository = MovieRepository(MovieRetrofitService.createService(MovieApi::class.java))
+    fun getMovieDetailsById(id: Long) = liveData{
+        emit(movieRepository.getMovieDetailsById(id))
+    }
 
     fun getCurrentMoviesPlaying() = movieRepository.getCurrentlyPlayingMovies()
 
     fun getPopularMovies() = movieRepository.getPopularMovies()
 
-    fun getMovieDetailsById(id: Long) = liveData{
-        emit(movieRepository.getMovieDetailsById(id))
-    }
+
 }

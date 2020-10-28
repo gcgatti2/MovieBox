@@ -2,6 +2,7 @@ package com.backbase.assignment
 
 import com.backbase.assignment.ui.data.MovieRepository
 import com.backbase.assignment.ui.data.remote.MovieApi
+import com.backbase.assignment.ui.data.util.NoConnectivityException
 import com.backbase.assignment.ui.presentation.util.Either
 import com.backbase.assignment.ui.presentation.util.Failure
 import io.mockk.coEvery
@@ -19,8 +20,9 @@ class MovieRepositoryUnitTest {
     private val defaultMovie = MovieTestBuilder().build()
     private val movieRepository = MovieRepository(movieApi)
 
+    //other two methods just return Pager(..).flow, this one was worth a simple test
     @Test
-    fun testMovieResponse_getMovieId() {
+    fun testResponse_getMovieDetailsById() {
         runBlocking {
 
             coEvery {
@@ -34,6 +36,12 @@ class MovieRepositoryUnitTest {
             }.returns(Response.error(404, ResponseBody.create(null, "")))
             actual = movieRepository.getMovieDetailsById(randomId)
             actual shouldBeEqualTo Either.Left(Failure.ServerFailure(404))
+
+            coEvery {
+                movieApi.getMovieDetailsById(randomId)
+            }.throws(NoConnectivityException())
+            actual = movieRepository.getMovieDetailsById(randomId)
+            actual shouldBeEqualTo Either.Left(Failure.ConnectionFailure)
         }
     }
 }

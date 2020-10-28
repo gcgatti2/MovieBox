@@ -1,4 +1,4 @@
-package com.backbase.assignment.ui.data
+package com.backbase.assignment.ui.data.remote.data_source
 
 import androidx.paging.PagingSource
 import com.backbase.assignment.ui.data.remote.MovieApi

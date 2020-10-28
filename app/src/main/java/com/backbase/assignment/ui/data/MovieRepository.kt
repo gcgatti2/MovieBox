@@ -3,6 +3,8 @@ package com.backbase.assignment.ui.data
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.backbase.assignment.ui.data.remote.MovieApi
+import com.backbase.assignment.ui.data.remote.data_source.CurrentlyPlayingMovieDataSource
+import com.backbase.assignment.ui.data.remote.data_source.PopularMovieDataSource
 import com.backbase.assignment.ui.data.remote.entity.Movie
 import com.backbase.assignment.ui.presentation.util.Either
 import com.backbase.assignment.ui.presentation.util.Failure

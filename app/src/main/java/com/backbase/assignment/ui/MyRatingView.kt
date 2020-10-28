@@ -1,6 +1,7 @@
 package com.backbase.assignment.ui
 
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RotateDrawable
@@ -12,15 +13,14 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.backbase.assignment.R
 
-class MyRatingView(context: Context, attrs: AttributeSet) : FrameLayout(context, attrs) {
+class MyRatingView: FrameLayout {
 
     companion object {
         const val HIGHER_REVIEW_SCORE_THRESHOLD = 50 //point at which the review is a "higher score"
     }
 
-    init {
-        init(attrs)
-    }
+    constructor(context: Context, attrs: AttributeSet): super(context, attrs) { init(attrs) }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int): super(context, attrs, defStyleAttr) { init(attrs) }
 
     var rating = 0
     set(r) {
