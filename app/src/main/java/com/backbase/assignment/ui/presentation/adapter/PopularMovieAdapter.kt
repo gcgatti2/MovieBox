@@ -13,8 +13,12 @@ import com.backbase.assignment.ui.data.remote.entity.Movie
 import com.backbase.assignment.ui.util.*
 import com.bumptech.glide.Glide
 
-class PopularMovieAdapter(private val movieClickListener: MovieClickListener?)
+class PopularMovieAdapter(private val movieClickListener: PopularMovieListener?)
                           : PagingDataAdapter<Movie, PopularMovieAdapter.ViewHolder>(MovieComparator)  {
+
+    interface PopularMovieListener {
+        fun onPopularMovieClicked(movie: Movie)
+    }
 
     class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context)
         .inflate(R.layout.popular_movie_item, parent, false)) {
@@ -39,7 +43,7 @@ class PopularMovieAdapter(private val movieClickListener: MovieClickListener?)
             holder.tvReleaseDate.text = getLongformDate(movie.releaseDate)
             holder.tvDuration.text = getHourAndMinuteFromMinute(movie.duration)
             holder.itemView.setOnClickListener {
-                movieClickListener?.onMovieClicked(movie.id)
+                movieClickListener?.onPopularMovieClicked(movie)
             }
         }
     }
