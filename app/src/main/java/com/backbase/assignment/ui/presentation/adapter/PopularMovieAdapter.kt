@@ -46,7 +46,7 @@ class PopularMovieAdapter(private val movieClickListener: PopularMovieListener?)
             holder.tvTitle.text = movie.title
             holder.tvReleaseDate.text = getLongformDate(movie.releaseDate)
             holder.tvDuration.text = getHourAndMinuteFromMinute(movie.duration)
-//            holder.ratingView.rating = (movie.averageRating * 10).toInt()
+            holder.ratingView.rating = (movie.averageRating * 10).toInt()
             holder.itemView.setOnClickListener {
                 movieClickListener?.onPopularMovieClicked(movie)
             }

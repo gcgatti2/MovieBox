@@ -1,6 +1,7 @@
 package com.backbase.assignment.ui
 
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RotateDrawable
@@ -20,16 +21,20 @@ class MyRatingView: FrameLayout {
 
     constructor(context: Context, attrs: AttributeSet): super(context, attrs) { init(attrs) }
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int): super(context, attrs, defStyleAttr) { init(attrs) }
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int)
-            : super(context, attrs, defStyleAttr, defStyleRes) { init(attrs) }
 
     var rating = 0
-
+    set(r) {
+        field = r
+        adjustRating(field)
+    }
     private lateinit var progressBar: ProgressBar
     private lateinit var tvRatingView: TextView
+    private val ratingRingDrawable by lazy { ContextCompat.getDrawable(context, R.drawable.rating_ring) }
+    private val circularShapeDrawable by lazy {
+        ((ratingRingDrawable as LayerDrawable).findDrawableByLayerId(R.id.circular_progress) as RotateDrawable).drawable as GradientDrawable
+    }
 
     private fun init(attrs: AttributeSet) {
-
         val view = LayoutInflater.from(context).inflate(R.layout.rating_view_layout, this, false)
         addView(view)
         progressBar = view.findViewById(R.id.progress_bar)
@@ -37,21 +42,20 @@ class MyRatingView: FrameLayout {
 
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyRatingView, 0, 0)
         rating = typedArray.getInt(R.styleable.MyRatingView_rating, 0)
+        adjustRating(rating)
+        typedArray.recycle()
+    }
 
-        val ratingRingDrawable = ContextCompat.getDrawable(context, R.drawable.rating_ring)
-        val circularShapeDrawable =
-            ((ratingRingDrawable as LayerDrawable).findDrawableByLayerId(R.id.circular_progress) as RotateDrawable).drawable as GradientDrawable
-        if(rating >= HIGHER_REVIEW_SCORE_THRESHOLD) {
+    private fun adjustRating(newRating: Int) {
+        if(newRating >= HIGHER_REVIEW_SCORE_THRESHOLD) {
             circularShapeDrawable.setColor(ContextCompat.getColor(context, R.color.lightGreen))
         } else {
             circularShapeDrawable.setColor(ContextCompat.getColor(context, R.color.mustardYellow))
         }
         progressBar.apply {
             progressDrawable = ratingRingDrawable
-            progress = rating
+            progress = newRating
         }
-        tvRatingView.text = rating.toString()
-
-        typedArray.recycle()
+        tvRatingView.text = newRating.toString()
     }
 }
