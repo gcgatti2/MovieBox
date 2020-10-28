@@ -7,10 +7,10 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/poster"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
+        android:id="@+id/img_poster"
+        android:layout_width="75dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,22 +19,39 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@+id/poster"
-        app:layout_constraintTop_toTopOf="@+id/poster"
-        tools:text="Title" />
-
-    <TextView
-        android:id="@+id/releaseDate"
+        android:id="@+id/tv_release_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        tools:text="April 12, 2019" />
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        tools:text="April 12, 2019"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/img_poster"
+        app:layout_constraintTop_toTopOf="@+id/img_poster"
+        tools:text="Demon Slayer: Kimetsu no Yaiba"
+        android:maxLines="2"
+        android:ellipsize="end"/>
+
+    <TextView
+        android:id="@+id/tv_movie_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="3h 1m"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_release_date"
+        app:layout_constraintStart_toEndOf="@id/img_poster"/>
 
     <com.backbase.assignment.ui.custom.RatingView
         android:id="@+id/rating"
@@ -44,4 +61,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
