@@ -1,6 +1,7 @@
 package com.backbase.assignment
 
 import com.backbase.assignment.ui.presentation.util.getHourAndMinuteFromMinute
+import org.amshove.kluent.shouldBeEqualTo
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -15,14 +16,16 @@ class MinuteToHourMinuteUnitTest {
         var minutes = 120
         var expected = "2h"
         var actual = getHourAndMinuteFromMinute(minutes)
-        assertEquals(expected, actual)
+        expected shouldBeEqualTo actual
+
         minutes = 30
         expected = "30m"
         actual = getHourAndMinuteFromMinute(minutes)
-        assertEquals(expected, actual)
+        expected shouldBeEqualTo  actual
+
         minutes = 113
         expected = "1h 53m"
         actual = getHourAndMinuteFromMinute(minutes)
-        assertEquals(expected, actual)
+        expected shouldBeEqualTo  actual
     }
 }
