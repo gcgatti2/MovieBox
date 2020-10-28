@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.R
 import com.backbase.assignment.ui.data.remote.entity.BaseMovie
-import com.backbase.assignment.ui.util.MINIMUM_FILE_SIZE
-import com.backbase.assignment.ui.util.generateImageUrl
+import com.backbase.assignment.ui.presentation.util.MINIMUM_FILE_SIZE
+import com.backbase.assignment.ui.presentation.util.generateImageUrl
 import com.bumptech.glide.Glide
 
 class CurrentlyPlayingMoviePagingAdapter(private val movieClickListener: CurrentPlayingMovieListener?)

@@ -4,9 +4,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.backbase.assignment.ui.data.remote.MovieApi
 import com.backbase.assignment.ui.data.remote.entity.Movie
-import com.backbase.assignment.ui.util.Either
-import com.backbase.assignment.ui.util.Failure
-import com.backbase.assignment.ui.util.NoConnectivityException
+import com.backbase.assignment.ui.presentation.util.Either
+import com.backbase.assignment.ui.presentation.util.Failure
+import com.backbase.assignment.ui.data.util.NoConnectivityException
 
 class MovieRepository(private val movieApi: MovieApi) {
 

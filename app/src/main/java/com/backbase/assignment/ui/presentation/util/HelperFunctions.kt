@@ -1,12 +1,10 @@
-package com.backbase.assignment.ui.util
+package com.backbase.assignment.ui.presentation.util
 
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkRequest
-import com.backbase.assignment.ui.util.IMG_BASE_URL
-import com.backbase.assignment.ui.util.MINIMUM_FILE_SIZE
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -29,7 +27,6 @@ fun Application.startNetworkCallback(){
         })
 }
 
-
 fun getLongformDate(date: String): String {
     val formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy")
     return LocalDate.parse(date).format(formatter)
@@ -39,6 +36,6 @@ fun getHourAndMinuteFromMinute(minute: Int): String {
     val hour = minute / 60
     val hrString = if(hour > 0) "${hour}h" else ""
     val min = minute % 60
-    val minString = if(min > 0) "$min" else ""
-    return "${hrString} ${min}"
+    val minString = if(min > 0) { if(hrString.isNotBlank()) " ${min}m" else "${min}m" } else ""
+    return "${hrString}${minString}"
 }

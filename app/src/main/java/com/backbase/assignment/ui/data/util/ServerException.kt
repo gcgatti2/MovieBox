@@ -1,4 +1,4 @@
-package com.backbase.assignment.ui.util
+package com.backbase.assignment.ui.data.util
 
 import java.lang.Exception
 

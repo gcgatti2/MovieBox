@@ -10,10 +10,10 @@ import com.backbase.assignment.R
 import com.backbase.assignment.databinding.FragmentMovieDetailBinding
 import com.backbase.assignment.ui.data.remote.entity.Movie
 import com.backbase.assignment.ui.presentation.MovieViewModel
-import com.backbase.assignment.ui.util.Either
-import com.backbase.assignment.ui.util.generateImageUrl
-import com.backbase.assignment.ui.util.getHourAndMinuteFromMinute
-import com.backbase.assignment.ui.util.getLongformDate
+import com.backbase.assignment.ui.presentation.util.Either
+import com.backbase.assignment.ui.presentation.util.generateImageUrl
+import com.backbase.assignment.ui.presentation.util.getHourAndMinuteFromMinute
+import com.backbase.assignment.ui.presentation.util.getLongformDate
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 

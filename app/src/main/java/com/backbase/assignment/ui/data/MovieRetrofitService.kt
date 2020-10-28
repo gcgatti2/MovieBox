@@ -1,7 +1,7 @@
 package com.backbase.assignment.ui.data
 
-import com.backbase.assignment.ui.util.NoConnectivityException
-import com.backbase.assignment.ui.util.isNetworkActive
+import com.backbase.assignment.ui.data.util.NoConnectivityException
+import com.backbase.assignment.ui.presentation.util.isNetworkActive
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient

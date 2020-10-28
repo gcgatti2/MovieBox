@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:background="#99000000"
     android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#121212"
-        android:focusable="true"
-        android:clickable="true"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".ui.presentation.screens.MovieDetailFragment">
 
         <ImageView
@@ -26,14 +23,13 @@
 
         <ImageView
             android:id="@+id/img_poster"
-            android:layout_width="175dp"
-            android:layout_height="220dp"
+            android:layout_width="230dp"
+            android:layout_height="270dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.178" />
+            app:layout_constraintTop_toBottomOf="@id/img_back_navigation"
+            app:layout_constraintVertical_bias="0.048" />
 
         <TextView
             android:id="@+id/tv_movie_title"
@@ -54,7 +50,7 @@
             style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_movie_title" />
@@ -65,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="32dp"
             android:text="@string/overview"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_date_and_duration" />
@@ -78,7 +74,7 @@
             android:layout_marginHorizontal="35dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_overview"
             app:layout_constraintEnd_toEndOf="parent"/>

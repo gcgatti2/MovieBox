@@ -4,8 +4,8 @@ import androidx.paging.PagingSource
 import com.backbase.assignment.ui.data.remote.MovieApi
 import com.backbase.assignment.ui.data.remote.entity.Movie
 import com.backbase.assignment.ui.data.util.TMDB_STARTING_PAGE
-import com.backbase.assignment.ui.util.NoConnectivityException
-import com.backbase.assignment.ui.util.ServerException
+import com.backbase.assignment.ui.data.util.NoConnectivityException
+import com.backbase.assignment.ui.data.util.ServerException
 
 class PopularMovieDataSource(private val movieApi: MovieApi): PagingSource<Int, Movie>() {
 

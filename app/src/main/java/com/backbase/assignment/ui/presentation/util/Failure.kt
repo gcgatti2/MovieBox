@@ -1,4 +1,4 @@
-package com.backbase.assignment.ui.util
+package com.backbase.assignment.ui.presentation.util
 
 sealed class Failure {
     class ServerFailure(val responseCode: Int): Failure()

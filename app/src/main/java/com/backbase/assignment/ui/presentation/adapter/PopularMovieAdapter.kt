@@ -1,7 +1,6 @@
 package com.backbase.assignment.ui.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.R
 import com.backbase.assignment.ui.data.remote.entity.Movie
-import com.backbase.assignment.ui.util.*
+import com.backbase.assignment.ui.presentation.util.*
 import com.bumptech.glide.Glide
 
 class PopularMovieAdapter(private val movieClickListener: PopularMovieListener?)

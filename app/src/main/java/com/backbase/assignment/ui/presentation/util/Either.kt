@@ -1,4 +1,4 @@
-package com.backbase.assignment.ui.util
+package com.backbase.assignment.ui.presentation.util
 
 sealed class Either<T, V> {
     class Left<T, V>(val data: T): Either<T, V>()
