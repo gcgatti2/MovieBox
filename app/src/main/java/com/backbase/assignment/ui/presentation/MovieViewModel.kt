@@ -5,17 +5,17 @@ import androidx.lifecycle.liveData
 import com.backbase.assignment.ui.data.MovieRepository
 import com.backbase.assignment.ui.data.MovieRetrofitService
 import com.backbase.assignment.ui.data.remote.MovieApi
+import org.jetbrains.annotations.TestOnly
 
-class MovieViewModel: ViewModel() {
+open class MovieViewModel: ViewModel() {
 
-    private val movieRepository = MovieRepository(MovieRetrofitService.createService(MovieApi::class.java))
+    private var movieRepository = MovieRepository(MovieRetrofitService.createService(MovieApi::class.java))
+
     fun getMovieDetailsById(id: Long) = liveData{
         emit(movieRepository.getMovieDetailsById(id))
     }
 
-    fun getCurrentMoviesPlaying() = movieRepository.getCurrentlyPlayingMovies()
+    open fun getCurrentMoviesPlaying() = movieRepository.getCurrentlyPlayingMovies()
 
     fun getPopularMovies() = movieRepository.getPopularMovies()
-
-
 }

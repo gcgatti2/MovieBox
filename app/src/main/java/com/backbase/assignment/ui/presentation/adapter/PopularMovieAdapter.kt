@@ -4,20 +4,20 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.AsyncPagingDataDiffer
+import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListUpdateCallback
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.R
 import com.backbase.assignment.ui.MyRatingView
 import com.backbase.assignment.ui.data.remote.entity.Movie
-import com.backbase.assignment.ui.presentation.util.MINIMUM_FILE_SIZE
-import com.backbase.assignment.ui.presentation.util.generateImageUrl
-import com.backbase.assignment.ui.presentation.util.getHourAndMinuteFromMinute
-import com.backbase.assignment.ui.presentation.util.getLongformDate
+import com.backbase.assignment.ui.presentation.util.*
 import com.bumptech.glide.Glide
 
 class PopularMovieAdapter(private val movieClickListener: PopularMovieListener?)
-                          : PagingDataAdapter<Movie, PopularMovieAdapter.ViewHolder>(MovieComparator)  {
+                          : PagingDataAdapter<Movie, PopularMovieAdapter.ViewHolder>(POPULAR_MOVIE_DIFFER)  {
 
     interface PopularMovieListener {
         fun onPopularMovieClicked(movie: Movie)
@@ -54,7 +54,7 @@ class PopularMovieAdapter(private val movieClickListener: PopularMovieListener?)
     }
 
     companion object {
-        private val MovieComparator = object : DiffUtil.ItemCallback<Movie>() {
+        private val POPULAR_MOVIE_DIFFER = object : DiffUtil.ItemCallback<Movie>() {
             override fun areItemsTheSame(oldItem: Movie, newItem: Movie) =
                 oldItem.id == newItem.id
             override fun areContentsTheSame(oldItem: Movie, newItem: Movie) =

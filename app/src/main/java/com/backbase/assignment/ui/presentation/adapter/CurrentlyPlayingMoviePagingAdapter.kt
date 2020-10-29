@@ -3,22 +3,27 @@ package com.backbase.assignment.ui.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.paging.AsyncPagingDataDiffer
+import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListUpdateCallback
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.R
 import com.backbase.assignment.ui.data.remote.entity.BaseMovie
+import com.backbase.assignment.ui.presentation.util.EspressoIdlingResource
 import com.backbase.assignment.ui.presentation.util.MINIMUM_FILE_SIZE
 import com.backbase.assignment.ui.presentation.util.generateImageUrl
 import com.bumptech.glide.Glide
 
 class CurrentlyPlayingMoviePagingAdapter(private val movieClickListener: CurrentPlayingMovieListener?)
     : PagingDataAdapter<BaseMovie, CurrentlyPlayingMoviePagingAdapter.ViewHolder>(
-    BaseMovieComparator) {
+    CURRENTLY_PLAYING_MOVIE_DIFFER) {
 
     interface CurrentPlayingMovieListener {
         fun onCurrentPlayingMovieClicked(id: Long)
     }
+
     class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context)
         .inflate(R.layout.currently_playing_movie_item, parent, false)) {
         val context = itemView.context
@@ -43,11 +48,12 @@ class CurrentlyPlayingMoviePagingAdapter(private val movieClickListener: Current
     }
 
     companion object {
-        private val BaseMovieComparator = object : DiffUtil.ItemCallback<BaseMovie>() {
-            override fun areItemsTheSame(oldItem: BaseMovie, newItem: BaseMovie) =
-                oldItem.id == newItem.id
-            override fun areContentsTheSame(oldItem: BaseMovie, newItem: BaseMovie) =
-                oldItem == newItem
-        }
+        private val CURRENTLY_PLAYING_MOVIE_DIFFER =
+            object : DiffUtil.ItemCallback<BaseMovie>() {
+                override fun areItemsTheSame(oldItem: BaseMovie, newItem: BaseMovie) =
+                    oldItem.id == newItem.id
+                override fun areContentsTheSame(oldItem: BaseMovie, newItem: BaseMovie) =
+                    oldItem == newItem
+            }
     }
 }
