@@ -11,7 +11,7 @@ import com.backbase.assignment.ui.presentation.util.Failure
 import com.backbase.assignment.ui.data.util.NoConnectivityException
 import org.jetbrains.annotations.TestOnly
 
-open class MovieRepository(private var movieApi: MovieApi) {
+class MovieRepository(private var movieApi: MovieApi) {
 
     companion object {
         const val TMDB_PAGE_SIZE = 20

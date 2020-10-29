@@ -5,8 +5,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkRequest
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
 
 fun generateImageUrl(filePath: String, fileSize: Int = MINIMUM_FILE_SIZE) = IMG_BASE_URL + "w${fileSize}/${filePath}"
 
@@ -21,6 +20,7 @@ fun Application.startNetworkCallback(){
             override fun onAvailable(network: Network) {
                 isNetworkActive = true
             }
+
             override fun onLost(network: Network) {
                 isNetworkActive = false
             }
@@ -28,8 +28,9 @@ fun Application.startNetworkCallback(){
 }
 
 fun getLongformDate(date: String): String {
-    val formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy")
-    return LocalDate.parse(date).format(formatter)
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd")
+    val outputFormat = SimpleDateFormat("MMMMM dd, yyyy")
+    return outputFormat.format(inputFormat.parse(date))
 }
 
 fun getHourAndMinuteFromMinute(minute: Int): String {

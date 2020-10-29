@@ -2,6 +2,7 @@ package com.backbase.assignment.ui.presentation.screens
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -40,12 +41,17 @@ class MovieActivity : AppCompatActivity(), CurrentPlayingMovieListener, PopularM
 
         collectCurrentlyPlayingMovies()
         currentlyPlayingMoviePagerAdapter.addLoadStateListener { loadState->
+            //only show progressbar if data hasn't been loaded into adapter
+            binding.piCurrentlyPlaying.visibility =
+                if(loadState.refresh is LoadState.Loading) View.VISIBLE else View.GONE
             if(loadState.refresh is LoadState.NotLoading){
                 EspressoIdlingResource.decrement()
             }
         }
         collectPopularMovies()
         popularMovieAdapter.addLoadStateListener { loadState->
+            binding.piPopularMovies.visibility =
+                if(loadState.refresh is LoadState.Loading) View.VISIBLE else View.GONE
             if(loadState.refresh is LoadState.NotLoading){
                 EspressoIdlingResource.decrement()
             }

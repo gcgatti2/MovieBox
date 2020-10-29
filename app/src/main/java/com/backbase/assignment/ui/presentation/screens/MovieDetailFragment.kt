@@ -12,10 +12,7 @@ import com.backbase.assignment.databinding.FragmentMovieDetailBinding
 import com.backbase.assignment.ui.data.remote.entity.Movie
 import com.backbase.assignment.ui.presentation.MovieViewModel
 import com.backbase.assignment.ui.presentation.adapter.GenreListAdapter
-import com.backbase.assignment.ui.presentation.util.Either
-import com.backbase.assignment.ui.presentation.util.generateImageUrl
-import com.backbase.assignment.ui.presentation.util.getHourAndMinuteFromMinute
-import com.backbase.assignment.ui.presentation.util.getLongformDate
+import com.backbase.assignment.ui.presentation.util.*
 import com.bumptech.glide.Glide
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -41,9 +38,11 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         arguments?.let { args->
             val movieId = args[MovieActivity.MOVIE_ID] as Long?
             if(movieId != null){
+                EspressoIdlingResource.increment()
                 movieViewModel.getMovieDetailsById(movieId).observe(viewLifecycleOwner,
                 { result->
-                    when(result){
+                    EspressoIdlingResource.decrement()
+                    when(result) {
                         is Either.Right -> {
                             bindMovieData(result.data)
                         }
