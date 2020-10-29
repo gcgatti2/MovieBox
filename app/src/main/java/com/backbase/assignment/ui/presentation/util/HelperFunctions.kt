@@ -29,7 +29,7 @@ fun Application.startNetworkCallback(){
 
 fun getLongformDate(date: String): String {
     val inputFormat = SimpleDateFormat("yyyy-MM-dd")
-    val outputFormat = SimpleDateFormat("MMMMM dd, yyyy")
+    val outputFormat = SimpleDateFormat("MMMM dd, yyyy")
     return outputFormat.format(inputFormat.parse(date))
 }
 
